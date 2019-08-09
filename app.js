@@ -11,19 +11,7 @@ class Book {
 class UI {
   //class method
   static displayBooks() {
-    const StoredBooks = [
-      {
-        title: 'Book One',
-        author: 'John Doe',
-        isbn: '325543'
-      },
-      {
-        title: 'Book Two',
-        author: 'Jane Doe',
-        isbn: '1244521'
-      }
-    ];
-    const books = StoredBooks;
+    const books = Store.getBooks();
 
     books.forEach( book => UI.addBookToList(book));
   }
@@ -87,11 +75,11 @@ class Store {
 
   static removeBook(isbn){
     const books = Store.getBooks();
-    books.forEach((book, index)) => {
+    books.forEach((book, index) => {
       if(book.isbn === isbn){
         books.splice(index, 1)
       }
-    }
+    })
     localStorage.setItem(JSON.stringify(books))
   }
 }
